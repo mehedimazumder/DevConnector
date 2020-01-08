@@ -2,10 +2,11 @@ import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert, register }) => {
   const [formData, setData] = useState({
     name: '',
     email: '',
@@ -40,7 +41,8 @@ const Register = ({ setAlert }) => {
       // } catch (error) {
       //   console.error(error.response.data);
       // }
-      console.log('SUCCESS');
+      //console.log('SUCCESS');
+      register({ name, email, password });
     }
   };
 
@@ -107,6 +109,7 @@ const Register = ({ setAlert }) => {
 };
 
 Register.propTypes = {
-  setAlert: PropTypes.func.isRequired
+  setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired
 };
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);
